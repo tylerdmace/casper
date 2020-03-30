@@ -6,9 +6,9 @@ GRUBTOOL=grub2-mkrescue
 CFLAGS?=-O2
 CFLAGS:=$(CFLAGS) -Wall -Wextra
 
-.PHONY: all boot clean iso kernel linker
+.PHONY: default boot clean image kernel linker
 
-all: boot kernel linker iso
+default: boot kernel linker
 
 boot: boot.s
 	$(CCPATH)/$(AS) boot.s -o boot.o
@@ -19,7 +19,7 @@ kernel: kernel.c
 linker: linker.ld
 	$(CCPATH)/$(CC) -T linker.ld -o casper.bin -ffreestanding -nostdlib boot.o kernel.o -lgcc
 
-iso:
+image:
 	mkdir -p $(ISODIR)/boot/grub
 	cp casper.bin $(ISODIR)/boot/
 	cp grub.cfg $(ISODIR)/boot/grub/
