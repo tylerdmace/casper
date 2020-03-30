@@ -97,6 +97,6 @@ void terminal_writestring(const char* data) {
 
 void kernel_main(void) {
 	terminal_initialize();
-	terminal_writestring("Casper v0.0.1\r\n");
+	terminal_writestring("Casper v0.0.1\n");
 }
 
